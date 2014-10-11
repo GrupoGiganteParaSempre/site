@@ -1,25 +1,16 @@
 <?php
 
 namespace GPS\Model;
+use \GPS\DB;
 
 /**
  * Class Post
  *
  * @package GPS\Controller
  */
-class Post
+class Post extends Model
 {
 
-	/**
-	 * Busca todos os posts no blog
-	 * 
-	 * @return Array
-	 */
-	public static function all()
-	{
-		global $app;
-		$sql = "SELECT * FROM posts";
-		return $app['db']->fetchAll($sql);
-	}
+
 
 }

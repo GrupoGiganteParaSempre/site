@@ -5,8 +5,10 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 
 /** @var Silex\Application $app * */
-$app->get('/', 'GPS\Controller\Post::indexAction');
-$app->get('/index.html', 'GPS\Controller\Post::indexAction');
+$app->get('/', 'GPS\Controller\Post::index');
+$app->get('/index.html', 'GPS\Controller\Post::index');
+$app->get('{slug}', 'GPS\Controller\Post::view');
+
 
 ## Error Handlers ##############################################################
 #

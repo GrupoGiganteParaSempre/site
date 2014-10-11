@@ -4,6 +4,7 @@ namespace GPS\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use GPS\Model;
 
 /**
  * Class Post
@@ -21,11 +22,16 @@ class Post
 	 *
 	 * @return mixed
 	 */
-	public function indexAction(Request $request, Application $app)
+	public function index(Request $request, Application $app)
 	{
 		return print_r(\GPS\Model\Post::all());
 
 		// return $app['twig']->render('index.html.twig', array());
+	}
+
+	public function view($slug, Request $request, Application $app)
+	{
+		return print_r(Model\Post::findBySlug($slug));
 	}
 
 }
