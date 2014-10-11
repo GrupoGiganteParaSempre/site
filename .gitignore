@@ -1,1 +1,11 @@
-/vendor/
+.idea
+.DS_Store
+composer.lock
+composer.phar
+vendor
+resources/cache/twig/
+resources/cache/assetic/
+resources/log/*
+resources/db/*
+web/assets/css/
+web/assets/js/

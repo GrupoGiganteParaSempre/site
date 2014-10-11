@@ -3,6 +3,7 @@
 use Silex\Provider\HttpCacheServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
 use SilexAssetic\AsseticServiceProvider;
 
 ####### SETUP ########################################################################################
@@ -11,7 +12,7 @@ use SilexAssetic\AsseticServiceProvider;
 /** @var Silex\Application $app * */
 $app->register(new TwigServiceProvider(), array(
 	'twig.options' => array(
-		'cache'			=> isset($app['twig.options.cache']) ? $app['twig.options.cache'] : false,
+		'cache'            => isset($app['twig.options.cache']) ? $app['twig.options.cache'] : false,
 		'strict_variables' => true
 	),
 	'twig.path'	=> array(__DIR__ . '/../resources/views')
@@ -23,15 +24,23 @@ $app->register(new HttpCacheServiceProvider());
 # MONOLOG -->
 $app->register(new MonologServiceProvider(), array(
 	'monolog.logfile' => __DIR__ . '/../resources/log/app.log',
-	'monolog.name'	=> 'app',
+	'monolog.name'    => 'app',
 	'monolog.level'   => 300 // = Logger::WARNING
+));
+
+# DOCTRINE -->
+$app->register(new DoctrineServiceProvider(), array(
+	'db.options' => array(
+		'driver' => 'pdo_sqlite',
+		'path'   => __DIR__.'/../resources/db/ghost.db',
+	),
 ));
 
 # ASSETIC (from https://github.com/lyrixx/Silex-Kitchen-Edition/blob/master/src/app.php ) -->
 if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
 	$app->register(new AsseticServiceProvider(), array(
 		'assetic.options' => array(
-			'debug' => $app['debug'],
+			'debug'            => $app['debug'],
 			'auto_dump_assets' => $app['debug'],
 		)
 	));
