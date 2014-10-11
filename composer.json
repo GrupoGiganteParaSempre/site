@@ -1,0 +1,13 @@
+{
+    "name": "gpsbr/site-content-admin",
+    "description": "Gerenciador de conteúdo do site do Grupo Gigante para Sempre",
+    "require": {
+        "silex/silex": "~1.2"
+    },
+    "authors": [
+        {
+            "name": "Gustavo Seganfredo",
+            "email": "gustavosf@gmail.com"
+        }
+    ]
+}
