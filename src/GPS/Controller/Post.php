@@ -29,7 +29,11 @@ class Post
 
 	public function view($slug, Request $request, Application $app)
 	{
-		return print_r(Model\Post::findBySlug($slug));
+		$post = Model\Post::findBySlug($slug);
+		return $app['twig']->render('post.html.twig', array(
+			'title'   => $post->title,
+			'content' => $post->html,
+		));
 	}
 
 }
